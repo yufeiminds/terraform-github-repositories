@@ -1,17 +1,4 @@
-# Verified Terraform Module
-
-The Verified Terraform module is a template repository to help developers create their own Terraform Module.
-
-Enjoy it by following steps:
-
-1. Use [this template](https://github.com/lonegunmanb/terraform-verified-module) to create your repository.
-2. Write Terraform code in a new branch.
-3. Run `make pre-commit` to check in local.
-4. Create a pull request for the main branch.
-    * The title must be a [conventional message](https://www.conventionalcommits.org/)
-    * CI check will be executed automatically.
-5. Merge pull request, release, and tag will be auto-generated.
-6. Enjoy it!
+# Terarform Modules for Github Repository
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -19,33 +6,32 @@ Enjoy it by following steps:
 | Name                                                                      | Version |
 |---------------------------------------------------------------------------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2  |
-| <a name="requirement_null"></a> [null](#requirement\_null)                | >= 3.1  |
+| <a name="requirement_github"></a> [github](#requirement\_github)          | 5.3.0   |
 
 ## Providers
 
-| Name                                                 | Version |
-|------------------------------------------------------|---------|
-| <a name="provider_null"></a> [null](#provider\_null) | >= 3.1  |
+No providers.
 
 ## Modules
 
-No modules.
+| Name                                                                     | Source               | Version |
+|--------------------------------------------------------------------------|----------------------|---------|
+| <a name="module_repositories"></a> [repositories](#module\_repositories) | ./modules/repository | n/a     |
+| <a name="module_teams"></a> [teams](#module\_teams)                      | ./modules/team       | n/a     |
 
 ## Resources
 
-| Name                                                                                                       | Type     |
-|------------------------------------------------------------------------------------------------------------|----------|
-| [null_resource.nop](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+No resources.
 
 ## Inputs
 
-| Name                                                            | Description      | Type     | Default | Required |
-|-----------------------------------------------------------------|------------------|----------|---------|:--------:|
-| <a name="input_echo_text"></a> [echo\_text](#input\_echo\_text) | The text to echo | `string` | n/a     |   yes    |
+| Name                                                                   | Description                      | Type                                                                                                                                                                                                                                                                                                                                                                      | Default | Required |
+|------------------------------------------------------------------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|:--------:|
+| <a name="input_organization"></a> [organization](#input\_organization) | The name of Github organization  | `string`                                                                                                                                                                                                                                                                                                                                                                  | n/a     |   yes    |
+| <a name="input_repositories"></a> [repositories](#input\_repositories) | The reposotories of organization | <pre>map(object({<br>    description        = optional(string)<br>    gitignore_template = optional(string)<br>    license_template   = optional(string)<br>    private            = optional(bool)<br>    application_ids    = optional(list(string))<br>    teams              = optional(map(string))<br>    collaborators      = optional(map(string))<br>  }))</pre> | `{}`    |    no    |
+| <a name="input_teams"></a> [teams](#input\_teams)                      | The team members of organization | <pre>map(object({<br>    description = optional(string)<br>    members = list(object({<br>      username = string<br>      role     = string<br>    }))<br>  }))</pre>                                                                                                                                                                                                    | `{}`    |    no    |
 
 ## Outputs
 
-| Name                                                              | Description      |
-|-------------------------------------------------------------------|------------------|
-| <a name="output_echo_text"></a> [echo\_text](#output\_echo\_text) | The text to echo |
+No outputs.
 <!-- END_TF_DOCS -->
